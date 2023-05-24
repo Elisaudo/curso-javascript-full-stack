@@ -1,0 +1,50 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+img {
+  width: 100px;
+  height: 100px;
+}
+.title {
+  font-size: 36px;
+  font-weight: 900;
+  margin: auto;
+  padding-bottom: 60px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards {
+    display: flex;
+    gap: 40px;
+
+}
+
+.card {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.text {
+    padding-top: 15px;
+}
+
+/* não edite este rodapé */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+}
