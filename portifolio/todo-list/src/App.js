@@ -26,7 +26,6 @@ export default function App() {
   }
 
   function handleEditInputChange(e) {
-
     setCurrentTodo({ ...currentTodo, text: e.target.value });
     console.log(currentTodo);
   }
@@ -39,8 +38,8 @@ export default function App() {
         ...todos,
         {
           id: todos.length + 1,
-          text: todo.trim()
-        }
+          text: todo.trim(),
+        },
       ]);
     }
 
@@ -61,7 +60,6 @@ export default function App() {
   }
 
   function handleUpdateTodo(id, updatedTodo) {
- 
     const updatedItem = todos.map((todo) => {
       return todo.id === id ? updatedTodo : todo;
     });
@@ -72,7 +70,6 @@ export default function App() {
   }
 
   function handleEditClick(todo) {
-
     setIsEditing(true);
 
     setCurrentTodo({ ...todo });
@@ -80,14 +77,13 @@ export default function App() {
 
   return (
     <div className="App">
-
       {isEditing ? (
+        <form className="form-editar" onSubmit={handleEditFormSubmit}>
+          <div className="titulo-editar">
+            <h2>Editar Tarefa</h2>
+          </div>
 
-        <form onSubmit={handleEditFormSubmit}>
-
-          <h2>Edit Todo</h2>
-
-          <label htmlFor="editTodo">Edit todo: </label>
+          <label htmlFor="editTodo">Editar tarefa: </label>
 
           <input
             name="editTodo"
@@ -97,32 +93,55 @@ export default function App() {
             onChange={handleEditInputChange}
           />
 
-          <button type="submit">Update</button>
+          <button className="btn btn-atualizar" type="submit">
+            Atualizar
+          </button>
 
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button
+            className="btn btn-cancelar"
+            onClick={() => setIsEditing(false)}
+          >
+            Cancelar
+          </button>
         </form>
       ) : (
+        <form className="form-adicionar" onSubmit={handleFormSubmit}>
+          <div className="titulo-adicionar">
+            <h2>Adicionar tarefa</h2>
+          </div>
 
-        <form onSubmit={handleFormSubmit}>
-          <h2>Add Todo</h2>
-          <label htmlFor="todo">Add todo: </label>
+          <label htmlFor="todo">Adicionar tarefa: </label>
           <input
             name="todo"
             type="text"
-            placeholder="Create a new todo"
+            placeholder="Crie uma nova tarefa"
             value={todo}
             onChange={handleInputChange}
           />
-          <button type="submit">Add</button>
+          <button className="btn btn-adicionar" type="submit">
+            Adicionar
+          </button>
         </form>
       )}
 
       <ul className="todo-list">
         {todos.map((todo) => (
-          <li key={todo.id}>
+          <li className="todo" key={todo.id}>
             {todo.text}
-            <button onClick={() => handleEditClick(todo)}>Edit</button>
-            <button onClick={() => handleDeleteClick(todo.id)}>Delete</button>
+            <span className="btn-todo">
+              <button
+                className="btn btn-editar"
+                onClick={() => handleEditClick(todo)}
+              >
+                Editar
+              </button>
+              <button
+                className="btn btn-deletar"
+                onClick={() => handleDeleteClick(todo.id)}
+              >
+                Deletar
+              </button>
+            </span>
           </li>
         ))}
       </ul>

@@ -1,4 +1,6 @@
 {
-  "mongoURI": "mongodb+srv://bookstore:bookstore123@cluster0.knyamzk.mongodb.net/?retryWrites=true&w=majority"
+  "mongoURI":"mongodb+srv://bookstore:bookstore123@cluster0.knyamzk.mongodb.net/"
 }
+
+
 
