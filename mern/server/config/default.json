@@ -1,5 +1,7 @@
 {
-  "mongoURI":"mongodb+srv://bookstore:bookstore123@cluster0.knyamzk.mongodb.net/"
+
+"mongoURI": "mongodb+srv://bookstore:bookstore123@cluster0.knyamzk.mongodb.net/"
+
 }
 
 
