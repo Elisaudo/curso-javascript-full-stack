@@ -58,6 +58,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+
 .close-button {
 background: #eee;
 border-radius: 50%;

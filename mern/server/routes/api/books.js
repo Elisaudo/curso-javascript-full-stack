@@ -1,59 +1,53 @@
 const express = require('express');
+
 const router = express.Router();
 
 //Carrega o Book model
-
 const Book = require('../../models/Book');
 
+
 //GET api/books/test
-// Rota para testar livros
+//Rota para testar livros
+router.get('/test'), (req, res) => res.send('Testando rota book');
 
-router.get('/test', (req, res) => res.send('Testando rota book'));
-
-//GET api/books
+// GET api/books
 // Pegar todos os livros
-
-router.get('/', (req, res) => {
-    Book.find()
-      .then(books => res.json(books))
-      .catch(err => res.status(404).json({nobooksfound: 'Nenhum livro encontrado'}));
+router.get('/', (req,res) => {
+  Book.find()
+    .then(books => res.json(books))
+    .catch(err => res.status(404).json({nobooksfound:"Nenhum livro encontrado"}));
 });
 
 //GET api/books/:id
 //Pegar único livro por id
-
-router.get('/:id', (req, res) => {
+router.get('/:id', (req,res) => {
     Book.findById(req.params.id)
-      .then(book => res.json(book))
-      .catch(err => res.status(404).json({nobooksfound: 'Nenhum livro encontrado'}));
-});
+      .then(books => res.json(books))
+      .catch(err => res.status(404).json({nobooksfound:"Nenhum livro encontrado"}));
+  });
 
 //POST api/books
-//Adicionar / salvar livro
-
-router.post('/', (req, res) => {
+//adicionar/salvar livro
+router.post('/', (req,res) => {
     Book.create(req.body)
-      .then(book => res.json({msg: 'Livro adicionado com sucesso'}))
-      .catch(err => res.status(400).json({error: 'Não foi possível adicionar este livro'}));
-});
+      .then(books => res.json({msg: 'Livro adicionado com sucesso'}))
+      .catch(err => res.status(400).json({error:"Não foi possível adicionar este livro"}));
+  });
 
-//PUT api/books/:id
-//Atualizar livro
+  //PUT api/book/:id
+  //atualizar livro
+  router.put('/:id', (req,res) => {
+    Book.findByIdAndUpdate(req.params.id,req.body )
+      .then(books => res.json({msg:'Atualizado com sucesso'}))
+      .catch(err => res.status(400).json({error:"Não foi possível atualizar a base de dado"}));
+  });
 
-router.put('/:id', (req, res) => {
-    Book.findByIdAndUpdate(req.params.id, req.body)
-      .then(book => res.json({msg:'Atualizado com sucesso'}))
-      .catch(err => res.status(400).json({error: 'Não foi possível atualizar a base de dados'}));
-});
+  //DELETE api/books/:id
+  //deletar livro por id
+  router.delete('/:id', (req,res) => {
+    Book.findOneAndDelete(req.params.id,req.body)
+      .then(books => res.json({msg:'Livro deletado com sucesso'}))
+      .catch(err => res.status(400).json({error:"Não existe este livro"}));
+  });
 
-
-//DELETE api/books/:id
-//Deletar livro por id
-
-router.delete('/:id', (req, res) => {
-    Book.findByIdAndRemove(req.params.id, req.body)
-      .then(book => res.json({msg:'Livro deletado com sucesso'}))
-      .catch(err => res.status(400).json({error: 'Não existe este livro'}));
-});
-
-module.exports = router;
+  module.exports = router;
