@@ -8,7 +8,7 @@ const Book = require('../../models/Book');
 
 //GET api/books/test
 //Rota para testar livros
-router.get('/test'), (req, res) => res.send('Testando rota book');
+router.get('/test', (req, res) => res.send('Testando rota book'));
 
 // GET api/books
 // Pegar todos os livros
