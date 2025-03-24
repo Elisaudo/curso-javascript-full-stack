@@ -31,7 +31,7 @@ const Datatable = ({ books}) => {
       <tbody>
         {books.map((book, index) => {
           return (
-            <tr key={book.id}>
+            <tr key={index}>
               <td>{index + 1}</td>
               <td>{book.title}</td>
               <td>{book.isbn}</td>
